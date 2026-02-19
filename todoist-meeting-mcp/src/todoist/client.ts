@@ -36,14 +36,14 @@ export class TodoistClient {
           color: p.color,
           isArchived: p.isArchived,
           isDeleted: p.isDeleted,
-          order: p.order,
-          parentId: p.parentId,
+          order: "childOrder" in p ? (p as { childOrder: number }).childOrder : 0,
+          parentId: "parentId" in p ? (p as { parentId?: string | null }).parentId : undefined,
           isFavorite: p.isFavorite,
           sections: sections.map((s) => ({
             id: s.id,
             name: s.name,
             projectId: s.projectId,
-            order: s.order,
+            order: s.sectionOrder ?? 0,
           })),
         };
       })
@@ -70,7 +70,7 @@ export class TodoistClient {
       id: s.id,
       name: s.name,
       projectId: s.projectId,
-      order: s.order,
+      order: s.sectionOrder ?? 0,
     }));
   }
 
@@ -176,7 +176,9 @@ export class TodoistClient {
   async findProjectByName(name: string): Promise<TodoistProject | null> {
     const projects = await this.getProjects();
     const normalized = name.trim().toLowerCase();
-    let match = projects.find((p) => p.name.toLowerCase().includes(normalized) || normalized.includes(p.name.toLowerCase()));
+    let match: ProjectWithSections | null | undefined = projects.find(
+      (p) => p.name.toLowerCase().includes(normalized) || normalized.includes(p.name.toLowerCase())
+    );
     if (!match) {
       await this.refreshCache();
       const again = await this.getProjects();
@@ -213,7 +215,7 @@ export class TodoistClient {
       id: section.id,
       name: section.name,
       projectId: section.projectId,
-      order: section.order,
+      order: section.sectionOrder ?? 0,
     };
   }
 
@@ -227,8 +229,8 @@ export class TodoistClient {
       color: project.color,
       isArchived: project.isArchived,
       isDeleted: project.isDeleted,
-      order: project.order,
-      parentId: project.parentId,
+      order: "childOrder" in project ? (project as { childOrder: number }).childOrder : 0,
+      parentId: "parentId" in project ? (project as { parentId?: string | null }).parentId : undefined,
       isFavorite: project.isFavorite,
     };
   }
