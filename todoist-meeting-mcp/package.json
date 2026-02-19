@@ -1,0 +1,36 @@
+{
+  "name": "todoist-meeting-mcp",
+  "version": "1.0.0",
+  "description": "MCP server integrating Claude with Todoist for intelligent meeting note processing",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "todoist-meeting-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "todoist",
+    "claude",
+    "meeting-notes"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@doist/todoist-api-typescript": "^6.0.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "chrono-node": "^2.7.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
