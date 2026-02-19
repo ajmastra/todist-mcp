@@ -129,29 +129,6 @@ npm run dev
 
 ---
 
-## Pushing the first release tag
-
-After cloning and (optionally) adding a remote:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Todoist Meeting MCP server"
-git remote add origin https://github.com/YOUR_ORG/todoist-meeting-mcp.git
-git push -u origin main
-```
-
-Create and push the first release tag:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-The **Release** workflow will run: checkout → Node 18 → `npm ci` → `npm run build` → create GitHub Release and attach **todoist-meeting-mcp.js**. You can then use npx or the downloaded asset as above.
-
----
-
 ## License
 
 MIT
