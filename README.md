@@ -4,7 +4,6 @@
 [![Release](https://github.com/ajmastra/todist-mcp/actions/workflows/release.yml/badge.svg)](https://github.com/ajmastra/todist-mcp/actions/workflows/release.yml)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> **Replace `YOUR_ORG` in the badge URLs with your GitHub username or org** so the badges reflect your repo’s CI and release status.
 
 A production-ready **Model Context Protocol (MCP)** server that connects Claude with Todoist for intelligent meeting note processing. Parse meeting notes into actionable Todoist tasks with inferred due dates and priorities, create and complete tasks by name, and list projects and tasks—all through natural language in Claude.
 
